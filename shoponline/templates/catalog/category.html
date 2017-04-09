@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Welcome to the shop!</title>
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<script>
+var $j=jQuery.noConflict()
+$j(function() {
+  $j( "#dialog" ).dialog({
+    autoOpen: false,
+  });
+  $j( "#opener" ).click(function() {
+    $j( "#dialog" ).dialog( "open" );
+  });
+});
+</script>
+
+<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+<script>
+     function apost() {
+        var temp = document.createElement("form");
+        var hang = $(this).parent("tr").prevAll().length;
+        hang=Number(hang)
+        temp.action = "";
+        temp.method = "post";
+        temp.id="form2"
+        var opt = document.createElement("textarea");
+        opt.name = "del_index";
+        opt.value = hang
+        temp.appendChild(opt);
+        document.body.appendChild(temp);
+        temp.submit();
+     }
+</script>
+
+<style>
+
+div.img{
+	border:1px solid #ccc;
+}
+
+div.img:hover{
+  border:1px solid #777;
+}
+
+div.img:img{
+  width:100%;
+	height:auto;
+}
+
+div.desc{
+  padding:15px;
+	text-align:center;
+}
+
+*{
+   box-sizing:border-box;
+}
+
+[class*=“col-""]{
+    float:left;
+    padding:15px;
+    width:100%;
+}
+
+.header{
+    background-color:#9933cc;
+    color:#ffffff;
+    padding:15px;
+}
+
+.menu ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+.menu li{
+    padding:8px;
+    margin-bottom:7px;
+    background-color:#33b5e5;
+    color:#ffffff;
+    box-shadow:0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);
+}
+
+.menu li:hover{
+    background-color:#0099cc;
+}
+.responsive{
+  padding:0 6px;
+	float:left;
+	width:24.99999%;
+}
+
+@media only screen and(max-width:500px){
+    .responsive{
+	  width:49.99999%;
+		margin:6px 0;
+    }
+}
+
+@media only screen and(max-width:500px){
+    .responsive{
+	  width:100%;
+    }
+}
+
+.clearfix:after{
+  content:"";
+	display:table;
+	clear:both;
+}
+
+.d2
+{
+  float:right;
+  width:50px;
+  height:40px;
+  margin:5px
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  商品列表<a href="../../register" target="_blank">用户注册</a>
+ <button class="d2" id="opener">Cart</button>
+ {% block log_user %}
+ {% endblock %}
+</div>
+
+<div class="col-3 col-s-3 menu">
+  <ul>
+    {% block category %}
+    {% endblock %}
+  </ul>
+</div>
+
+{% block imgshow %}
+{% endblock %}
+
+<div id="dialog" title="购物车">
+  {% block cart %}
+  {% endblock %}
+</div>
+
+<div class="clearfix"></div>
+
+<div style="padding:6px;"></div>
+
+</body>
+</html>

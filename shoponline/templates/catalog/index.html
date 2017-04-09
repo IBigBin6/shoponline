@@ -1,0 +1,50 @@
+{% extends "catalog/category.html" %}
+{% block category %}
+<li>分类1</li>
+<li>分类2</li>
+{% endblock %}
+{% block imgshow %}
+{% for i in p %}
+<div class="responsive">
+  <div class="img">
+      <a target="_blank" href="product/{{i.name}}">
+          <img src="media/{{i.name}}.jpg" alt="图片文本描述" width='335' height='230' >
+     </a>
+          <div class="desc">
+              <p>{{i.name}}</p>
+              <p>{{i.price}}</p>
+          </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block cart %}
+<table border='1'>
+ {% for k in request.session.cart %}
+ <tr>
+   <td> {{k.name}}</td>
+   <td> {{k.price}} </td>
+   <td> <button onclick=apost() >删除</button></td>
+ </tr>
+ {% endfor %}
+{% endblock %}
+
+{% block log_user %}
+  {% if request.user.is_authenticated %}
+    <p> {{request.user}}您已经登入</p>
+    <form id="form3" method="post" action="">
+        <input type="submit" value="注销">
+        <input type="hidden" value="Y" name="logout">
+    </form>
+  {% else %}
+    <form id="form4" method="post" action="">
+        <label for="username">用户名：</label>
+        <input type="text" name="username" value="" id="username" >
+        <label for="password">密码：</label>
+        <input type="password" name="password" value="" id="password">
+        <input type="submit" value="登录">
+    </form>
+  {% endif %}
+{% endblock %}
+

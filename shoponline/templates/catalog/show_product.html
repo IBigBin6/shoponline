@@ -1,0 +1,32 @@
+{% extends "catalog/product.html" %}
+
+{% block page_title %}
+<title>{{p.name}}商品详情</title>
+{% endblock %}
+
+{% block show_img %}
+<p>{{p.name}}</p>
+<img src="../../../media/{{p.name}}.jpg" alt="图片文本描述" width='335' height='230'>
+{% endblock %}
+
+{% block product_info %}
+<h3>商品描述：{{p.description}}</h3>
+<h3>商品价格：{{p.price}}</h3>
+<h3>剩余数量：{{p.quantity}}</h3>
+<form id="form1" action="" method="post">
+  <input type="hidden" name="add_name" value={{p.name}}>
+  选择数量： <input type="number" name="quantity" min="1" max="100" value="1">
+  <input type="submit" value="立即购买">
+</form>
+{% endblock %}
+
+{% block cart %}
+<table border='1'>
+  {% for k in request.session.cart %}
+  <tr>
+      <td> {{k.name}}</td>
+      <td> {{k.price}} </td>
+      <td> <button onclick=apost() >删除</button></td>
+  </tr>
+  {% endfor %}
+{% endblock %}
