@@ -54,7 +54,8 @@ def show_product(request,template_name,product_name):
 
     if request.POST.get('add_name'):
         newp=Product.objects.get(name=request.POST['add_name'])
-        request.session['cart'].append(newp)
+        if not newp in request.session['cart']:
+            request.session['cart'].append(newp)
 
     if request.POST.get('del_index'):
         rowIndex=request.POST.get('del_index')
